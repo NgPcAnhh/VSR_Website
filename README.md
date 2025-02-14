@@ -86,4 +86,86 @@ Platform được cập nhật định kỳ với:
 
 ---
 
+# IELTS Speaking Practice Platform mô tả kỹ thuật🎯
+
+## 🛠 Công nghệ sử dụng
+
+- **Frontend**: HTML, CSS, JavaScript
+- **Backend**: Flask (Python)
+- **Database**: MySQL
+- **AI Integration**: Speech-to-text, Error detection models
+
+## ⚙️ Cài đặt và Chạy Project
+
+### Yêu cầu hệ thống
+- Python 3.8 hoặc cao hơn
+- MySQL 5.7 hoặc cao hơn
+- Git
+
+### Các bước cài đặt
+
+1. **Clone repository**
+```bash
+git clone https://github.com/NgPcAnhh/VSR_Website.git
+cd VSR_Website
+```
+
+2. **Tạo và kích hoạt môi trường ảo (khuyến nghị)**
+```bash
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# Linux/Mac
+source venv/bin/activate
+```
+
+3. **Cài đặt các thư viện cần thiết**
+```bash
+pip install flask
+```
+//API được viết bằng jupiter notebook, đã có phần cài đặt các thư viện cụ thể
+
+4. **Cấu hình database**
+- Tạo database MySQL mới
+- Cập nhật thông tin kết nối trong file `database/db.py`
+
+5. **Chạy ứng dụng**
+```bash
+python app.py
+```
+
+6. **Truy cập ứng dụng**
+- Mở trình duyệt web và truy cập: `http://localhost:5000`
+
+### Cấu trúc Project
+```
+VSR_website/                # Root folder of the project
+│── API/                    # API-related files (if any)
+│── database/               # Database management files
+│   │── db.py               # Database connection and setup
+│   │── user_queries.py     # User-related database queries
+│   └── db_vsr/             # (Possibly a database folder)
+│── generatequestion/       # Logic to generate IELTS questions
+│── static/                 # Static assets for frontend
+│   │── css/                # Stylesheets
+│   │── js/                 # JavaScript files
+│   │── picture/            # Images
+│   └── video/              # Videos
+│── templates/              # HTML templates for Flask
+│── app.py                  # Main application entry point
+└── personalstudyprocesspredicting.joblib  # ML model for study prediction
+```
+
+## 🤝 Đóng góp
+
+Mọi đóng góp đều được chào đón! Vui lòng:
+1. Fork project
+2. Tạo branch mới (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Mở Pull Request
+
+---
+
 © 2025 IELTS Speaking Practice Platform. All rights reserved.
+
