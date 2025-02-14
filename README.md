@@ -20,14 +20,12 @@ Nền tảng luyện thi IELTS Speaking trực tuyến với trải nghiệm thi
 - **Speech-to-Text**: Chuyển đổi câu trả lời của bạn thành văn bản để phân tích
 - **Error Detection**: Phát hiện các lỗi phổ biến về:
   - Ngữ pháp cơ bản
-  - Phát âm
   - Từ vựng không phù hợp
   - Độ trôi chảy trong câu trả lời
-- **Score Prediction**: Dự đoán band điểm dựa trên:
-  - Độ chính xác của câu trả lời
-  - Độ phong phú từ vựng
-  - Cấu trúc câu và ngữ pháp
-  - Phát âm và độ trôi chảy
+- **Speaking band Prediction**: Dự đoán band điểm dựa trên:
+  - Thông tin nhân khẩu học 
+  - Điểm IELTS hiện tại
+  - Tổng thời gian có thể học 
 
 ### 4. Theo dõi tiến độ học tập
 - Biểu đồ tiến bộ theo thời gian
@@ -45,7 +43,6 @@ Nền tảng luyện thi IELTS Speaking trực tuyến với trải nghiệm thi
 2. **Chọn chế độ luyện tập**
    - Full Test cho trải nghiệm thi thật
    - Practice Mode cho luyện tập từng phần
-   - Custom Mode cho luyện tập theo chủ đề
 
 3. **Thực hiện bài thi**
    - Làm theo hướng dẫn trên màn hình
@@ -75,15 +72,9 @@ Nền tảng luyện thi IELTS Speaking trực tuyến với trải nghiệm thi
 ## 📝 Phản hồi và hỗ trợ
 
 Mọi góp ý và yêu cầu hỗ trợ, vui lòng liên hệ:
-- Email: support@tên-miền.com
-- Facebook: [IELTS Speaking Practice]
-- Twitter: [@IELTSpeaking]
+- Email: phucanhnguyen0408@gmail.com
+- Zalo: 0.3.8.8.9.5.3.8.1.9
 
-## 📊 Kết quả đạt được
-
-- 85% học viên cải thiện ít nhất 0.5 band điểm sau 1 tháng sử dụng
-- 90% học viên đánh giá platform hữu ích cho việc luyện thi
-- Hơn 10,000 học viên đã sử dụng và đạt kết quả tốt
 
 ## 🔄 Cập nhật thường xuyên
 
