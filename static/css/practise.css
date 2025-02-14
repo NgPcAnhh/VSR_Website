@@ -1,0 +1,229 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+#practise-container {
+    display: flex;
+    height: 80vh;
+    padding: 60px;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+#practise-left-panel {
+    flex: 0 0 50vw;
+    height: 100%;
+    overflow: hidden;
+    background-color: transparent; /* Đảm bảo nền trong suốt */
+    display: flex; /* Sử dụng flexbox */
+    align-items: center; /* Căn giữa theo chiều cao */
+    justify-content: center; /* Căn giữa theo chiều ngang nếu cần */
+}
+
+.image-container {
+    position: relative;
+    width: 100%; /* Đặt chiều rộng container 75% để phù hợp với ảnh 512x512 */
+}
+
+.image-container img {
+    width: 100%; /* Đặt chiều rộng ảnh 100% so với container */
+    height: auto; /* Tự động điều chỉnh chiều cao để giữ tỷ lệ ảnh */
+    display: block; /* Đảm bảo ảnh không có khoảng trắng dưới */
+    object-fit: cover; /* Đảm bảo ảnh bao phủ toàn bộ không gian mà không bị méo */
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* Hiệu ứng chuyển đổi mượt mà */
+}
+
+#overlay-text {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1.2em;
+}
+/* Hiệu ứng chuyển đổi */
+.fade-out {
+    opacity: 0;
+}
+
+.slide-left {
+    transform: translateX(-100%);
+}
+
+.slide-right {
+    transform: translateX(100%);
+}
+
+.zoom-in {
+    transform: scale(1.5);
+}
+
+.zoom-out {
+    transform: scale(0.5);
+}
+
+#practise-right-panel {
+    flex: 0 0 35%; /* Giảm xuống 30% để cân bằng với panel trái */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#practise-question-box {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    height: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+#practise-title {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 1.5em;
+}
+
+#practise-question-content {
+    flex-grow: 1;
+    padding: 15px;
+    border: 1px solid #ee9439;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    min-height: 200px;
+    background: #f9f9f9;
+    outline: none;
+    transition: border-color 0.3s ease;
+    overflow-y: scroll;}
+
+#practise-question-content:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+#practise-reset-btn {
+    position: relative;
+    padding: 12px 24px;
+    background: #ee9439;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    width: 120px;
+    margin: 0 auto;
+}
+
+#practise-reset-btn span {
+    position: relative;
+    z-index: 1;
+    font-weight: bold;
+}
+
+#practise-liquid {
+    position: absolute;
+    top: -80px;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 45%;
+    transition: transform 0.5s ease;
+    animation: practise-wave 5s infinite linear;
+}
+
+#practise-reset-btn:hover #practise-liquid {
+    transform: translateY(40px);
+}
+
+@keyframes practise-wave {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#practise-taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#practise-taskbar-left,
+#practise-taskbar-center,
+#practise-taskbar-right {
+    display: flex;
+    gap: 10px;
+}
+
+.practise-control-btn,
+#practise-next-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.practise-control-btn {
+    background: #e9ecef;
+    color: #6c757d;
+}
+
+#practise-next-btn {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+#practise-next-btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.timer-box {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    font-family: 'Digital-7', sans-serif;
+    font-size: 30px;
+    color: #eedf39;
+    background-color: #b47474;
+    padding: 2.5px 8px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgb(238, 148, 57);
+}
+
+.timer-digit {
+    margin: 0 5px;
+}
+
+.timer-separator {
+    margin: 0 5px;
+}

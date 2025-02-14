@@ -1,0 +1,745 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: Arial, sans-serif;
+}
+
+.main-container {
+display: flex;
+width: 100%;
+height: 100vh;
+}
+
+/* Left content section - 60% */
+.content-section {
+width: 60%;
+height: 100vh;
+overflow-y: auto;
+background-color: #f5e6d3;
+padding: 20px;
+overflow-x:hidden;
+}
+
+.content-section::-webkit-scrollbar {
+width: 8px;
+}
+
+.content-section::-webkit-scrollbar-track {
+background: #e6d5c1;
+}
+
+.content-section::-webkit-scrollbar-thumb {
+background: #feb200;
+border-radius: 4px;
+}
+
+.title {
+color: #feb200;
+font-size: 2.5rem;
+margin-bottom: 2rem;
+text-shadow: 0 0 10px rgba(254, 178, 0, 0.5);
+}
+
+.content-box {
+background-color: rgba(254, 178, 0, 0.1);
+border: 1px solid #feb200;
+border-radius: 8px;
+padding: 1.5rem;
+margin-bottom: 1.5rem;
+color: #fff;
+}
+
+/* Right login section - 40% */
+.login-section {
+width: 40%;
+height: 100vh;
+background-color: #f5f5f5;
+padding: 2rem;
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+overflow: hidden;
+}
+
+.login-decoration {
+position: absolute;
+top: 20px;
+right: 20px;
+display: flex;
+gap: 10px;
+}
+
+.decoration-circle {
+width: 12px;
+height: 12px;
+border-radius: 50%;
+background: linear-gradient(45deg, #feb200, #ffd700);
+animation: pulse 2s infinite;
+}
+
+.decoration-circle:nth-child(2) {
+animation-delay: 0.3s;
+}
+
+.decoration-circle:nth-child(3) {
+animation-delay: 0.6s;
+}
+
+@keyframes pulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.2); }
+100% { transform: scale(1); }
+}
+
+.form-container {
+position: relative;
+width: 100%;
+max-width: 400px;
+height: 500px;
+margin-top: 80px;
+}
+
+.vsr-logo-container {
+position: absolute;
+top: -80px;
+left: 50%;
+transform: translateX(-50%);
+text-align: center;
+z-index: 2;
+transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.vsr-logo-text {
+font-size: 48px;
+font-weight: 900;
+color: #ff0000;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+letter-spacing: -2px;
+margin: 0;
+}
+
+.vsr-logo-subtext {
+font-size: 12px;
+color: #333;
+margin-top: 5px;
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+
+.login-container,
+.create-account-container,
+.forgot-password-container {
+width: 100%;
+background: white;
+padding: 2rem;
+border-radius: 10px;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.create-account-container,
+.forgot-password-container {
+transform: translate(150%, -50%);
+opacity: 0;
+pointer-events: none;
+}
+
+/* Classes for animation */
+.slide-out {
+transform: translate(-150%, -50%) !important;
+opacity: 0;
+pointer-events: none;
+}
+
+.slide-in {
+transform: translate(-50%, -50%) !important;
+opacity: 1;
+pointer-events: auto;
+}
+
+.back-to-login {
+position: relative;
+z-index: 100;
+display: inline-block;
+margin-bottom: 1rem;
+cursor: pointer;
+color: #feb200;
+text-decoration: none;
+background: white;
+padding: 5px 10px;
+}
+
+.back-to-login:hover {
+text-decoration: underline;
+}
+
+.login-title {
+text-align: center;
+margin-bottom: 2rem;
+}
+
+.form-group {
+margin-bottom: 1.5rem;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 0.5rem;
+color: #333;
+}
+
+.form-group input {
+width: 100%;
+padding: 0.8rem;
+border: 1px solid #ddd;
+border-radius: 4px;
+font-size: 1rem;
+}
+
+.login-button {
+width: 100%;
+padding: 0.8rem;
+background-color: #feb200;
+color: #000;
+border: none;
+border-radius: 4px;
+font-size: 1rem;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+.login-button:hover {
+background-color: #e6a100;
+}
+
+.form-footer {
+margin-top: 1.5rem;
+text-align: center;
+}
+
+.form-footer a {
+color: #feb200;
+text-decoration: none;
+margin: 0 10px;
+}
+
+.form-footer a:hover {
+text-decoration: underline;
+}
+
+.vsr-container {
+font-family: Arial, sans-serif;
+text-align: center;
+width: calc(100% + 40px);  /* Tổng chiều rộng bao gồm cả padding */
+margin-left: -20px;  /* Bù trừ padding của parent */
+margin-top: -20px;
+padding: 0;
+position: relative;
+}
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+.vsr-header {
+background-color: #feb200;
+color: red;
+text-align: center;
+padding: 15px 20px;
+font-family: 'Montserrat', sans-serif;
+font-size: 28px;
+font-weight: 700;
+line-height: 40px;
+letter-spacing: 1px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+position: relative;
+overflow: hidden;
+}
+
+.vsr-header::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 4px;
+background: linear-gradient(90deg, transparent, #fff, transparent);
+animation: shine 2s infinite;
+}
+
+.vsr-image-container img {
+transition: transform 0.5s ease, box-shadow 0.3s ease;
+}
+
+.vsr-image-container img:hover {
+transform: scale(1.02);
+box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.vsr-text-section {
+font-family: 'Poppins', sans-serif;
+transition: transform 0.3s ease;
+border-left: 4px solid #feb200;
+}
+
+.vsr-text-section:hover {
+transform: translateY(-5px);
+}
+
+.vsr-text-section strong {
+color: #feb200;
+font-size: 22px;
+font-weight: 600;
+display: block;
+margin-bottom: 10px;
+}
+
+.vsr-text-section p {
+font-weight: 300;
+line-height: 1.6;
+color: #444;
+}
+
+.vsr-image-text-container {
+transition: transform 0.3s ease;
+background: linear-gradient(to right bottom, #fff, #fafafa);
+}
+
+.vsr-image-text-container:hover {
+transform: translateY(-5px);
+}
+
+.vsr-text-content {
+font-family: 'Poppins', sans-serif;
+}
+
+.vsr-text-content strong {
+color: #feb200;
+font-size: 20px;
+font-weight: 600;
+display: block;
+margin-bottom: 10px;
+}
+
+.vsr-youtube-video {
+transition: transform 0.3s ease;
+}
+
+.vsr-youtube-video:hover {
+transform: translateY(-5px);
+}
+
+.vsr-youtube-video h2 {
+font-family: 'Montserrat', sans-serif;
+color: #333;
+margin-bottom: 15px;
+font-size: 24px;
+font-weight: 600;
+}
+
+.vsr-contact-info {
+background: linear-gradient(45deg, #feb200, #ffc94d);
+}
+
+.vsr-contact-details {
+font-family: 'Poppins', sans-serif;
+}
+
+.vsr-contact-details p {
+transition: transform 0.2s ease;
+}
+
+.vsr-contact-details p:hover {
+transform: translateX(5px);
+}
+
+@keyframes shine {
+0% {
+transform: translateX(-100%);
+}
+100% {
+transform: translateX(100%);
+}
+}
+
+/* Thêm hiệu ứng loading cho ảnh */
+.vsr-image {
+opacity: 0;
+animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+.vsr-image-container {
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 15px;
+margin: 15px auto;
+width: calc(100% - 40px);  /* Trừ đi padding hai bên */
+}
+
+.vsr-image {
+max-width: 90%;
+height: auto;
+border-radius: 8px;
+}
+
+.vsr-image-text-container {
+display: flex;
+align-items: center;
+padding: 20px;
+background-color: #fff;
+border-radius: 15px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+margin: 15px auto; /* Thêm auto để căn giữa */
+width: 80%;  /* Giảm từ calc(100% - 40px) xuống 80% */
+}
+
+.vsr-left-image {
+width: 35%;
+height: auto;
+margin-right: 15px;
+}
+
+.vsr-text-content {
+width: 65%;
+text-align: left;
+font-size: 16px;
+}
+
+.vsr-youtube-video {
+width: calc(100% - 40px);  /* Trừ đi padding hai bên */
+margin-left: auto;
+margin-right: auto;
+margin: 15px auto;  /* Căn giữa và thêm margin trên dưới */
+padding: 10px;
+background-color: #f9f9f9;
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.vsr-youtube-video iframe {
+width: 100%;
+height: 400px;
+border: none;
+border-radius: 8px;
+}
+
+.vsr-contact-info {
+background-color: #feb200;
+padding: 25px 20px;
+margin-top: 15px;
+width: 100%;  /* Sử dụng 100% của container */
+margin-bottom: -20px;
+border-radius: 15px 15px 0 0;
+}
+
+.vsr-info-container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+max-width: 800px;  /* Giới hạn chiều rộng tối đa */
+margin: 0 auto;  /* Căn giữa */
+padding: 0 20px;
+}
+
+.vsr-contact-details {
+flex: 1;
+text-align: left;
+font-size: 14px;
+}
+
+.vsr-icon {
+width: 45px;
+height: 45px;
+margin-right: 12px;
+vertical-align: middle;
+transition: transform 0.3s ease;
+}
+
+.vsr-logo {
+width: 120px;
+margin-left: 15px;
+}
+
+.vsr-copyright {
+text-align: center;
+margin-top: 15px;
+font-size: 14px;
+}
+
+/* Thêm scrollbar styles */
+.vsr-container::-webkit-scrollbar {
+width: 8px;
+}
+
+.vsr-container::-webkit-scrollbar-track {
+background: #e6d5c1;
+}
+
+.vsr-container::-webkit-scrollbar-thumb {
+background: #feb200;
+border-radius: 4px;
+}
+
+.vsr-illustration-container {
+position: relative;
+width: 100%;  /* Thay đổi từ 80% thành 100% */
+margin: 20px auto;
+padding: 15px;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 20px;
+}
+
+.vsr-illustration-item {
+width: 80%;  /* Giữ nguyên width 80% như các container khác */
+max-width: none;  /* Bỏ giới hạn max-width */
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vsr-illustration-item:hover {
+transform: translateY(-5px);
+box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+z-index: 2; /* Đảm bảo ảnh được hover hiển thị trên cùng */
+}
+
+.vsr-illustration-image {
+width: 100%;
+height: auto;
+display: block;
+transition: transform 0.5s ease;
+}
+
+.vsr-illustration-image:hover {
+transform: scale(1.02);
+}
+
+/* Nút feedback */
+.feedback-button {
+position: fixed;
+bottom: 30px;
+right: 30px;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+background: #feb200;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+transition: transform 0.3s ease;
+}
+
+.feedback-button:hover {
+transform: scale(1.1);
+}
+
+/* Modal feedback */
+.feedback-modal {
+display: none;
+position: fixed;
+bottom: 100px;
+right: 30px;
+background: white;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+width: 300px;
+z-index: 1000;
+}
+
+.feedback-content {
+position: relative;
+}
+
+.close-btn {
+position: absolute;
+right: 10px;
+top: 10px;
+cursor: pointer;
+font-size: 20px;
+}
+
+.feedback-modal textarea {
+width: 100%;
+height: 100px;
+margin: 10px 0;
+padding: 8px;
+border: 1px solid #ddd;
+border-radius: 4px;
+resize: vertical;
+}
+
+.submit-btn {
+background: #feb200;
+color: white;
+border: none;
+padding: 8px 15px;
+border-radius: 4px;
+cursor: pointer;
+width: 100%;
+}
+
+.submit-btn:hover {
+background: #e6a100;
+}
+
+.vsr-contact-details p:hover .vsr-icon {
+transform: scale(1.2);
+}
+
+/* Thêm class để ẩn logo */
+.logo-hidden {
+transform: translate(-150%, -50%) !important;
+opacity: 0;
+}
+
+/* Chỉnh sửa CSS cho create account container */
+.create-account-container {
+max-height: 90vh;
+overflow-y: auto;
+padding: 1.5rem;
+z-index: 1;
+}
+
+/* Style cho thanh cuộn của create account container */
+.create-account-container::-webkit-scrollbar {
+width: 6px;
+}
+
+.create-account-container::-webkit-scrollbar-track {
+background: #f1f1f1;
+}
+
+.create-account-container::-webkit-scrollbar-thumb {
+background: #feb200;
+border-radius: 3px;
+}
+
+/* Chỉnh sửa form group trong create account */
+.create-account-container .form-group {
+margin-bottom: 1rem;
+}
+
+.create-account-container .form-group input {
+padding: 0.6rem;
+}
+
+
+/* Footer chính */
+.footer {
+  background-color: #feb200;
+  color: black;
+  padding: 40px 20px;
+  margin-top: 10%;
+    margin-bottom: -5%;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0;
+}
+
+.footer-section {
+  flex: 1 1 200px;
+  margin: 10px;
+}
+
+.footer-section h3 {
+  color: #FFD700; /* Màu vàng chuối */
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: black;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: #FFD700; /* Màu vàng chuối khi hover */
+}
+
+/* Form đăng ký bản tin */
+.footer-newsletter-form {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-newsletter-form input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  flex: 1;
+}
+
+.footer-newsletter-form button {
+  background-color: #FFD700; /* Màu vàng chuối */
+  color: #333333;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.footer-newsletter-form button:hover {
+  background-color: #FFC107; /* Màu vàng nhạt hơn khi hover */
+}
+
+/* Footer bottom */
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #555555;
+    margin-bottom: 0;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+}
+
+.footer-bottom a {
+  color: #FFD700; /* Màu vàng chuối */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-bottom a:hover {
+  color: #FFC107; /* Màu vàng nhạt hơn khi hover */
+}

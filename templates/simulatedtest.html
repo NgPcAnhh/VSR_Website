@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phòng Thi Trực Tuyến</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="../static/css/simulatedtest.css">
+</head>
+<body>
+  <div class="container">
+    <div class="examiner-frame">
+      <!-- Two videos that will be controlled by JavaScript -->
+      <video id="examiner-speaking" class="examiner-video" style="display: none;">
+        <source src="" type="video/mp4">
+      </video>
+      <video id="examiner-silent" class="examiner-video" style="display: none;">
+        <source src="" type="video/mp4">
+      </video>
+<!--      <button class="next-question-btn">Next-Question</button>-->
+    </div>
+
+    <div class="webcam-container">
+      <div class="webcam-frame">
+        <video id="webcam-video" autoplay playsinline></video>
+        <div class="no-signal"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-panel" id="chatPanel">
+    <div class="chat-header">
+      <span class="chat-title">Note</span>
+      <button class="close-btn" onclick="toggleChat()" style="border: none; background: none; cursor: pointer;"></button>
+    </div>
+    <div class="chat-content">
+      <textarea class="note-input" placeholder="Nhập ghi chú của bạn tại đây..."></textarea>
+    </div>
+  </div>
+
+  <!-- Settings panel -->
+  <div class="settings-panel" id="settingsPanel">
+    <button class="toggle-dark-mode-btn" id="toggleDarkModeBtn">Dark Mode</button>
+    <button class="exit-btn" id="exitBtn" onclick="exitTest()">Exit</button>
+    <script>
+      function exitTest() {
+        isRunning = false;
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+          mediaRecorder.stop();
+        }
+        window.location.href = '/loader2';
+      }
+    </script>
+  </div>
+
+    <!-- Thanh Taskbar được chia làm 3 phần -->
+    <div class="taskbar">
+      <div class="taskbar-left">
+        <button class="control-btn" id="camera-btn" title="Bật/Tắt Camera">
+          <i class="fas fa-video"></i>
+        </button>
+        <button class="control-btn" id="flip-btn" title="Lật Camera">
+          <i class="fas fa-sync-alt"></i>
+        </button>
+        <button class="control-btn disabled" title="Micro (Không khả dụng)">
+          <i class="fas fa-microphone"></i>
+        </button>
+      </div>
+      <div class="taskbar-center">
+        <button class="next-question-btn">Next-Question</button>
+      </div>
+      <div class="taskbar-right">
+        <button class="control-btn disabled" title="Chia sẻ màn hình (Không khả dụng)">
+          <i class="fas fa-desktop"></i>
+        </button>
+        <button class="control-btn" id="chat-btn" title="Mở ghi chú">
+          <i class="fas fa-comment"></i>
+        </button>
+        <button class="control-btn" id="settings-btn" title="Cài đặt">
+          <i class="fas fa-cog"></i>
+        </button>
+      </div>
+    </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
+  <script src="../static/js/simulatedtest.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSR - Virtual Speaking Room</title>
+    <link rel="stylesheet" href="../static/css/maininf.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">VSR-Virtual Speaking Room</div>
+            <div class="nav-icons">
+                <div class="nav-icon" id="predictingButton" style="cursor: pointer; padding: 10px; ; color: white; border-radius: 45px; margin-left: 10px;" onclick="window.location.href='/predicting'">📊</div>
+                <div class="nav-icon" id="languageToggle">🌐</div>
+                <div class="nav-icon" id="themeToggle">☀️</div>
+                <div class="nav-icon" id="profileIcon" style="position: relative;">
+                    👤
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div style="color: var(--text-primary); text-align:center;">ID: {{ user_id }}</div>
+                        <button class="logout-btn" onclick="window.location.href='/logout'">Log-out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="welcome-section">
+            <h1 id="welcome-title">Xin chào, học viên!</h1>
+            <p id="welcome-subtitle">Hãy bắt đầu luyện tập tiếng Anh nào</p>
+        </div>
+
+        <div class="main-content">
+            <div class="practice-column">
+                <div class="practice-card speaking" onclick="flipCard(this)">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-header">
+                                <div class="card-icon">💬</div>
+                                <span class="card-start" id="start-chat">Bắt đầu</span>
+                            </div>
+                            <h3 class="card-title" id="chat-title">Simulated test</h3>
+                            <p class="card-description" id="chat-desc">Thi IELTS Speaking với bot, bộ câu hỏi ngẫu nhiên mô phỏng 90% kì thi thật</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="confirm-test">
+                                <div class="confirm-message">
+                                    <p id="confirm-title">Bạn có chắc chắn muốn bắt đầu bài thi?</p>
+                                    <p id="confirm-desc" style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                                        Bài thi sẽ kéo dài khoảng 15 phút và không thể tạm dừng
+                                    </p>
+                                </div>
+                                <button class="confirm-btn" onclick="window.location.href='/prepare'">
+                                    Bắt đầu thi
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="practice-card speaking" onclick="flipCard(this)">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-header">
+                                <div class="card-icon">🎤</div>
+                                <span class="card-start" id="start-speaking">Thử ngay</span>
+                            </div>
+                            <h3 class="card-title" id="speaking-title">Luyện tập</h3>
+                            <p class="card-description" id="speaking-desc">Luyện tập với nhiều chế độ khác nhau</p>
+                        </div>
+                        <div class="card-back">
+                            <div class="practice-option" onclick="window.location.href='/practise4p1'">
+                                <div class="practice-option-icon">1️⃣</div>
+                                <div class="practice-option-title">Part 1</div>
+                                <div class="practice-option-desc">Luyện tập phần 1</div>
+                            </div>
+                            <div class="practice-option" onclick="window.location.href='/practise4p23'">
+                                <div class="practice-option-icon">2️⃣</div>
+                                <div class="practice-option-title">Part 2+3</div>
+                                <div class="practice-option-desc">Luyện tập phần 2 và 3</div>
+                            </div>
+                            <div class="practice-option" onclick="window.location.href='/practisefulltest'">
+                                <div class="practice-option-icon">🎯</div>
+                                <div class="practice-option-title">Full Test</div>
+                                <div class="practice-option-desc">Luyện tập toàn bộ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <div class="history-header">
+                    <h2 id="history-title">Lịch sử ôn luyện chỉ có thông tin lần thi Thông tin có dạng:</h2>
+                    <span>📅</span>
+                </div>
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>ID Test</th>
+                            <th>Time</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-tbody">
+                        <tr>
+                            <td>001</td>
+                            <td>TEST_001</td>
+                            <td>20/01/2025 15:30</td>
+                            <td>test1</td>
+                        </tr>
+                        <tr>
+                            <td>ID</td>
+                            <td>ID_Test format_Datetime</td>
+                            <td>dd/mm/yyyy hh:mm</td>
+                            <td>Test_type</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Note: you should use additional external recording software to record audio, which can then be converted to a WAV file and subsequently converted to text using the features below</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Note: bạn nên sử dụng thêm phần mềm thu âm riêng từ ngoài, file ghi âm có thể chuyển đổi sang dạng âm thanh file wav sau đó chuyển đổi sang text với các tính năng ở dưới</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-section">
+        <div class="bottom-card" id="converter-card">
+            <h2>Converter</h2>
+            <p>Convert various audio file formats to WAV for speech-to-text conversion.</p>
+            <a href="/converter">Go to Converter</a>
+        </div>
+        <div class="bottom-card" id="speech2text-card">
+            <h2>Speech2Text</h2>
+            <p>Convert audio recordings to text.</p>
+            <a href="/speech2text_INF">Go to Speech2Text</a>
+        </div>
+    </div>
+
+    <div class="history-modal" id="historyModal">
+        <div class="history-modal-content">
+            <div class="history-modal-header">
+                <div class="history-modal-title" id="modalHistoryTitle">Lịch sử chi tiết</div>
+                <button class="close-modal" onclick="closeHistoryModal()">×</button>
+            </div>
+            <table class="history-modal-table">
+                <thead>
+                    <tr>
+                        <th>Test ID</th>
+                        <th>ID</th>
+                        <th>Time</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody id="modalHistoryBody">
+                    <!-- Thêm các dòng dữ liệu khác -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../static/js/maininf.js"></script>
+</body>
+</html>

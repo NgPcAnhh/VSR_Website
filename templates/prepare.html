@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Audio Test System</title>
+    <link  rel="stylesheet" href="../static/css/prepare.css">
+
+</head>
+<body>
+<div class="container">
+    <h1 style="color: hsl(30, 40%, 25%); text-align: center; margin-bottom: 2rem;">SYSTEM AUDIO TEST</h1>
+
+    <div class="security-note">
+        <h3>Note:</h3>
+        <p>Due to browser technical limitations, the recorded file <strong>only contains audio from your microphone</strong>. System audio will not be recorded.</p>
+        <p>📌 To get a full recording including system audio, you can:</p>
+        <ul>
+            <li>Use a phone or external recording device</li>
+            <li>Install specialized system audio recording software</li>
+            <li>Download the VSR app for Windows computers & laptops</li>
+        </ul>
+    </div>
+
+    <div class="new-note">
+        <h3>Attention:</h3>
+        <p>The "Next Question" button should only be used after answering the question, do not press it arbitrarily to avoid software conflicts.</p>
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem;">
+        <button class="start-button" onclick="window.location.href='/timer'">START TEST</button>
+    </div>
+
+</div>
+
+    <div class="watermark">VSR: Virtual Speaking Room for IELTS Speaking</div>
+
+    <script>
+        // Hiệu ứng khi di chuột vào container
+        document.querySelector('.container').addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            e.currentTarget.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // Reset transform khi chuột rời khỏi
+        document.querySelector('.container').addEventListener('mouseleave', (e) => {
+            e.currentTarget.style.transform = 'rotateY(0) rotateX(0)';
+        });
+
+        // Hiệu ứng click button
+        document.querySelector('.start-button').addEventListener('click', function() {
+            this.style.animation = 'pulse 0.5s ease';
+            setTimeout(() => {
+                this.style.animation = '';
+            }, 500);
+        });
+
+        document.querySelector('.next-button').addEventListener('click', function() {
+            this.style.animation = 'pulse 0.5s ease';
+            setTimeout(() => {
+                this.style.animation = '';
+            }, 500);
+        });
+    </script>
+</body>
+</html>

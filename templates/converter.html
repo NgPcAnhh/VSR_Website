@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noble Audio Converter</title>
+    <link  rel="stylesheet" href="../static/css/converter.css">
+</head>
+<body>
+    <div class="container">
+          <a href="/MainInterface" class="back-button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Back
+    </a>
+        <div class="header">
+            <h1>MP3 Audio Converter</h1>
+            <p>Effortlessly convert various audio formats to high-quality MP3 files</p>
+        </div>
+
+        <div class="upload-section">
+            <input type="file" id="fileInput" accept="audio/*">
+            <label for="fileInput" class="custom-file-input">
+                <span>Select audio</span>
+            </label>
+            <div id="fileName"></div>
+
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+
+            <button id="convertBtn" onclick="startConversion()">
+                <span>Convert</span>
+                <div class="loading-spinner"></div>
+            </button>
+
+            <div id="status"></div>
+            <div class="error-message" id="errorMessage"></div>
+        </div>
+
+        <div id="downloadSection">
+            <a id="downloadLink" download>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                <span>Download MP3</span>
+            </a>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.0/lame.min.js"></script>
+    <script src="../static/js/converter.js"></script>
+</body>
+</html>

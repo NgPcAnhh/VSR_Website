@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phòng Thi Trực Tuyến</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/simulatedtest.css">
+    <link rel="stylesheet" href="../static/css/practise.css">
+</head>
+<body>
+    <div id="practise-container">
+        <div id="practise-left-panel">
+            <div class="image-container">
+                <img id="practise-image" src="../static/picture/3.png" alt="Practice Image">
+                <div id="overlay-text">Computer-based</div>
+            </div>
+        </div>
+
+        <script>
+            const images = [
+                { src: "../static/picture/1.png", text: "face2face" },
+                { src: "../static/picture/2.png", text: "face2face" },
+                { src: "../static/picture/3.png", text: "computer-based" },
+                { src: "../static/picture/4.png", text: "computer-based" },
+                { src: "../static/picture/5.png", text: "computer-based" },
+                { src: "../static/picture/6.png", text: "face2face" },
+                { src: "../static/picture/7.png", text: "computer-based" },
+                { src: "../static/picture/8.png", text: "face2face" },
+                { src: "../static/picture/9.png", text: "computer-based" }
+            ];
+
+            const effects = ['fade-out', 'slide-left', 'slide-right', 'zoom-in', 'zoom-out'];
+            let currentIndex = 0;
+            const imageElement = document.getElementById('practise-image');
+            const overlayText = document.getElementById('overlay-text');
+
+            setInterval(() => {
+                currentIndex = Math.floor(Math.random() * images.length);
+                const randomEffect = effects[Math.floor(Math.random() * effects.length)];
+                imageElement.classList.add(randomEffect);
+                setTimeout(() => {
+                    imageElement.src = images[currentIndex].src;
+                    overlayText.textContent = images[currentIndex].text;
+                    imageElement.className = ''; // Remove all effects
+                }, 1000); // Match this duration with the CSS transition duration
+            }, 20000); // 30 seconds interval
+        </script>
+
+        <div id="practise-right-panel">
+            <div id="practise-question-box">
+                <h3 id="practise-title">Câu hỏi</h3>
+                <div id="practise-question-content" contenteditable="true">
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <!-- Settings panel -->
+  <div class="settings-panel" id="settingsPanel">
+    <button class="toggle-dark-mode-btn" id="toggleDarkModeBtn" onclick="toggleDarkMode()">Dark Mode</button>
+    <button class="exit-btn" id="exitBtn" onclick="exitTest()">Exit</button>
+        <script>
+            // Define mediaRecorder
+            let mediaRecorder = null;
+
+            // Function to exit the test
+            function exitTest() {
+                isRunning = false; // Use the existing isRunning variable
+                if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                    mediaRecorder.stop();
+                }
+                window.location.href = '/loader2';
+            }
+
+            // Add event listener to the exit button
+            document.getElementById('exitBtn').addEventListener('click', exitTest);
+        </script>
+  </div>
+
+  <!-- Thanh Taskbar được chia làm 3 phần -->
+  <div class="taskbar">
+    <div class="taskbar-left">
+      <button class="control-btn disabled" title="Camera (Không khả dụng)">
+        <i class="fas fa-video"></i>
+      </button>
+      <button class="control-btn disabled" title="Lật Camera (Không khả dụng)">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+      <button class="control-btn disabled" title="Micro (Không khả dụng)">
+        <i class="fas fa-microphone"></i>
+      </button>
+    </div>
+    <div class="taskbar-center">
+      <button class="next-question-btn">Next-Question</button>
+    </div>
+    <div class="taskbar-right">
+      <button class="control-btn disabled" title="Chia sẻ màn hình (Không khả dụng)">
+        <i class="fas fa-desktop"></i>
+      </button>
+      <button class="control-btn disabled" id="chat-btn" title="Ghi chú (Không khả dụng)" >
+        <i class="fas fa-comment"></i>
+      </button>
+      <button class="control-btn" id="settings-btn" title="Cài đặt" onclick="toggleSettings()">
+        <i class="fas fa-cog"></i>
+      </button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
+  <script src="../static/js/practise_INF.js"></script>
+  <script src="../static/js/practise4p23.js"></script>
+</body>
+</html>

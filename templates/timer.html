@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link  rel="stylesheet" href="../static/css/timer.css">
+</head>
+<body>
+    <div class="countdown-container">
+        <div class="circle-outer"></div>
+        <div class="circle"></div>
+        <div class="countdown">3</div>
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <script>
+        // Tạo hiệu ứng particles
+        const particles = document.getElementById('particles');
+        for (let i = 0; i < 9; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            particles.appendChild(particle);
+        }
+
+        // Hàm tạo âm thanh
+        function playSound(frequency, duration, type = 'sine') {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.type = type;
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+
+        // Hàm đếm ngược
+        function startCountdown() {
+            let count = 3;
+            const countdownElement = document.querySelector('.countdown');
+
+            const countdownSounds = {
+                3: () => playSound(784, 0.3, 'square'),   // G5
+                2: () => playSound(659, 0.3, 'square'),   // E5
+                1: () => playSound(523, 0.3, 'square'),   // C5
+                0: () => playSound(1046, 0.5, 'sine')     // C6
+            };
+
+            function updateCount() {
+                countdownSounds[count]?.();
+
+                if(count > 0) {
+                    countdownElement.textContent = count;
+                    count--;
+                    setTimeout(updateCount, 1000);
+                } else {
+                    countdownElement.textContent = 'START';
+                    countdownElement.classList.add('start-text');
+                    countdownElement.style.animation = 'none';
+                    countdownElement.style.transform = 'translate(-50%, -50%) scale(1.2)';
+
+                    setTimeout(() => {
+                        window.location.href = '/simulatedtest';
+                    }, 1000);
+                }
+            }
+
+            updateCount();
+        }
+
+        // Khởi động khi trang load
+        window.addEventListener('load', () => {
+            // Kích hoạt Audio Context khi người dùng tương tác lần đầu
+            document.body.addEventListener('click', () => {
+                if (typeof AudioContext !== 'undefined' && !window.audioContextActivated) {
+                    new AudioContext().resume();
+                    window.audioContextActivated = true;
+                }
+            }, { once: true });
+
+            startCountdown();
+        });
+    </script>
+</body>
+</html>

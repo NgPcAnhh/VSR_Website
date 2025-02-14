@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Predicting IELTS Speaking Band</title>
+    <link rel="stylesheet" href="../static/css/predicting.css">
+  </head>
+  <body>
+    <a id="back-to-home" href="/MainInterface">Back to Home</a>
+    <div class="container">
+      <h1>Predicting IELTS Speaking Band</h1>
+      <div id="form-container">
+        <form id="predict-form">
+          <div class="form-group">
+            <label for="current_band">Current Band:</label>
+            <input type="number" step="0.1" id="current_band" name="current_band" required>
+          </div>
+          <div class="form-group">
+            <label for="avg_hours">Average Study Hours per Day:</label>
+            <input type="number" step="0.1" id="avg_hours" name="avg_hours" required>
+          </div>
+          <div class="form-group">
+            <label for="total_days">Total Days:</label>
+            <input type="number" id="total_days" name="total_days" required>
+          </div>
+          <div class="form-group">
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" required>
+          </div>
+          <div class="form-group">
+            <label for="nationality">Nationality:</label>
+            <select id="nationality" name="nationality" required>
+              <option value="">--Select Nationality--</option>
+              <option value="Vietnam">Vietnam</option>
+              <option value="China">China</option>
+              <option value="Korea">Korea</option>
+              <option value="Japan">Japan</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Malaysia">Malaysia</option>
+              <option value="India">India</option>
+              <option value="Cambodia">Cambodia</option>
+              <option value="Singapore">Singapore</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="native_language">Native Language:</label>
+            <select id="native_language" name="native_language" required>
+              <option value="">--Select Native Language--</option>
+              <option value="Vietnamese">Vietnamese</option>
+              <option value="Chinese">Chinese</option>
+              <option value="Korean">Korean</option>
+              <option value="Japanese">Japanese</option>
+              <option value="Thai">Thai</option>
+              <option value="Indonesian">Indonesian</option>
+              <option value="Malay">Malay</option>
+              <option value="Hindi">Hindi</option>
+              <option value="Khmer">Khmer</option>
+              <option value="Singaporean">Singaporean</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="type_of_study">Type of Study:</label>
+            <select id="type_of_study" name="type_of_study" required>
+              <option value="">--Select Type of Study--</option>
+              <option value="self-study">Self-Study</option>
+              <option value="school">School</option>
+              <option value="group">Group</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="english_experience_years">English Experience Years:</label>
+            <input type="number" step="0.1" id="english_experience_years" name="english_experience_years" required>
+          </div>
+          <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" step="1" id="age" name="age" required>
+          </div>
+          <button type="submit">Predict</button>
+        </form>
+      </div>
+      <div id="loader" class="hidden">
+        <div class="loader"></div>
+        <p>Processing, please wait...</p>
+      </div>
+      <div id="result-container" class="hidden">
+        <h2>Prediction Result</h2>
+        <div id="result-details"></div>
+        <button id="reset-btn">New Prediction</button>
+      </div>
+    </div>
+    <script src = '../static/js/predicting.js'></script>
+  </body>
+</html>

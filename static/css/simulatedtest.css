@@ -1,0 +1,469 @@
+/* Reset some default styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f2f5;
+  font-family: Arial, sans-serif;
+  overflow-y: hidden; /* Prevent vertical overflow */
+}
+
+/* Main container taking full screen width */
+.container {
+  width: 100%;
+}
+
+/* Examiner frame now spans full width and nearly full height of viewport */
+.examiner-frame {
+  position: relative;
+  width: 100vw;              /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  background-color: #000;
+  align-items: center;
+  overflow: hidden;
+  border: none;              /* Remove border if needed */
+  box-shadow: none;          /* Remove or adjust shadow */
+}
+
+/* Adjust the video so that it fills the examiner frame */
+.examiner-video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;         /* Ensures video covers the area while preserving aspect ratio */
+  background-color: #000;
+}
+
+
+
+.examiner-frame h1 {
+  color: #2c3e50;
+  margin: 0 0 20px 0;
+  font-size: 28px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 15px;
+}
+
+/* Webcam container styles */
+.webcam-container {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  width: 320px;
+  height: 240px;
+  z-index: 100;
+}
+
+.webcam-frame {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  position: relative;
+}
+
+#webcam-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* No signal styles for webcam if video stream is unavailable */
+.no-signal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 1px,
+      rgba(255, 255, 255, 0.03) 2px,
+      rgba(255, 255, 255, 0.03) 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.1) 0px,
+      rgba(255, 255, 255, 0.1) 1px,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0) 3px
+    ),
+    linear-gradient(
+      135deg,
+      rgb(15, 15, 15) 0%,
+      rgb(40, 40, 40) 50%,
+      rgb(15, 15, 15) 100%
+    );
+  animation: static-effect 0.5s steps(4) infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.no-signal::before {
+  content: "NO SIGNAL";
+  color: rgba(255, 255, 255, 0.8);
+  font-family: monospace;
+  font-size: 16px;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  letter-spacing: 2px;
+}
+
+.no-signal::after {
+  content: "";
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+}
+
+@keyframes static-effect {
+  0% { background-position: 0 0; }
+  100% { background-position: 3px 3px; }
+}
+
+/* Các style chung cho taskbar và các nút điều khiển */
+
+/* Taskbar tổng thể: hiển thị theo flex với 3 phần */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between; /* Phân chia không gian đều cho 3 phần */
+  align-items: center;
+  box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Phần bên trái của taskbar */
+.taskbar-left {
+  display: flex;
+  gap: 15px;
+  margin-left: 450px;
+}
+
+/* Phần bên phải của taskbar */
+.taskbar-right {
+  display: flex;
+  gap: 15px;
+  margin-right: 450px;
+}
+
+/* Phần giữa chứa nút Next-Question, căn giữa theo chiều ngang */
+.taskbar-center {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Nút Next-Question được thiết kế dài với bo tròn các góc */
+.next-question-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #333;
+  padding: 12px 40px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hiệu ứng chuyển động khi hover */
+.next-question-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Style chung cho các nút điều khiển trong taskbar */
+.control-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #333;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+/* Khi hover, các nút sẽ nhô lên */
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Nút micro/chia sẻ màn hình bị khóa */
+.control-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Tooltip cho các nút (nếu cần, có thể bật với pseudo element) */
+.control-btn::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.control-btn:hover::after {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Other styles for chat-panel, settings-panel, etc., remain the same */
+.chat-panel {
+    position: fixed;
+    top: 290px; /* Ngay dưới webcam container */
+    right: 30px;
+    width: 320px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.chat-panel.active {
+    display: flex;
+}
+
+.chat-header {
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-title {
+    font-weight: bold;
+    color: #333;
+}
+
+.chat-content {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.note-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    resize: none;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+    box-sizing: border-box;
+}
+
+.note-input:focus {
+    outline: none;
+}
+
+/* Styles cho settings panel */
+.settings-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center the buttons */
+    gap: 10px;
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: none;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.settings-panel.active {
+    display: block;
+}
+
+.volume-control {
+    margin: 15px 0;
+}
+
+.volume-control label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+}
+
+.volume-slider {
+    width: 100%;
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+    -webkit-appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+    border: none;
+}
+
+.volume-slider:focus {
+    outline: none;
+}
+
+/* Điều chỉnh style cho nút điều khiển */
+.control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #333;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.control-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.control-btn.active {
+    background: rgba(76, 175, 80, 0.3);
+    border-color: rgba(76, 175, 80, 0.5);
+    color: #4CAF50;
+}
+
+/* Thêm CSS cho video lật ngược */
+#webcam-video.flip {
+    transform: scaleX(-1);
+}
+
+/* Style cho nút lật camera */
+.control-btn.flip-btn.active {
+    background-color: #2196F3;
+}
+
+
+.exit-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 50px;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.exit-btn:hover {
+    background-color: #ff1a1a;
+}
+
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.examiner-frame.dark-mode {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+.next-question-btn.dark-mode {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.next-question-btn.dark-mode:hover {
+    background-color: #444;
+}
+
+.webcam-frame.dark-mode {
+    background-color: #1e1e1e;
+}
+
+.taskbar.dark-mode {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.control-btn.dark-mode {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+}
+
+.settings-panel.dark-mode {
+    background: rgba(0, 0, 0, 0.95);
+}
+
+.toggle-dark-mode-btn {
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    border: none;
+    padding: 10px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-dark-mode-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}

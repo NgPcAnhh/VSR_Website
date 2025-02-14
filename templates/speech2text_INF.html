@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speech to Text Conversion</title>
+    <link  rel="stylesheet" href="../static/css/speech2text.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Speech to Text Conversion</h1>
+    <div class="upload-container" onclick="document.getElementById('fileInput').click()">
+      <p>Click to upload WAV file</p>
+      <span id="fileName">No file selected</span>
+      <input type="file" id="fileInput" accept=".wav" onchange="updateFileName()" />
+    </div>
+    <button class="convert-btn" onclick="startConversion()">Convert and Analyze</button>
+    <div class="loading-bar-container">
+      <div class="loading-bar" id="loadingBar"></div>
+    </div>
+    <p class="note">The conversion process may take a few minutes, please be patient</p>
+    <textarea id="result" placeholder="The converted text will appear here..." readonly></textarea>
+  </div>
+
+  <textarea class="result-box" placeholder="The analysis text will appear here..." readonly></textarea>
+
+
+
+  <script src = "../static/js/speech2text.js"></script>
+</body>
+</html>

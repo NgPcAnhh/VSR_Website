@@ -1,0 +1,121 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+   background-color: #f5e6d3;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.5s ease;
+}
+
+.container {
+  max-width: 500px;
+  margin: 50px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.container:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+h1,
+h2 {
+  text-align: center;
+  color: #F0C040; /* Saddle brown color */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #F0C040; /* Saddle brown color */
+}
+
+input[type="number"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus {
+  border-color: #F0C040; /* Saddle brown color */
+  box-shadow: #e6a100; /* Saddle brown color */
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #F0C040; /* Saddle brown color */
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #e6a100; /* Darker brown color */
+  transform: scale(1.05);
+}
+
+/* Loader Styles */
+.hidden {
+  display: none;
+}
+
+#loader {
+  text-align: center;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #F0C040; /* Saddle brown color */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Back to Home Button */
+#back-to-home {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #F0C040; /* Saddle brown color */
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#back-to-home:hover {
+  background-color: #e6a100; /* Darker brown color */
+  transform: scale(1.05);
+}

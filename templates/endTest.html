@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Card</title>
+    <link rel="stylesheet" href="../static/css/endTest.css">
+</head>
+<body>
+    <div class="card">
+        <button class="mail" title="Gmail: phucanhnguyen@gmail.com" onclick="window.open('https://mail.google.com', '_blank')">
+            <svg class="lucide lucide-mail" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <rect rx="2" y="4" x="2" height="16" width="20"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+        </button>
+        <div class="profile-pic">
+            <img src="..\static\picture\avadev.jpg" alt="Profile Picture">
+        </div>
+        <div class="bottom">
+            <div class="content">
+                <span class="name">pcanh</span>
+                <span class="about-me" id="aboutMeSpan"></span>
+                <script>
+                    const messages = [
+                        "Speak clearly and confidently to make a good impression.",
+                        "Practice daily with different IELTS topics to improve fluency.",
+                        "Use a variety of sentence structures to showcase your grammar skills.",
+                        "Avoid memorized answers; the examiner values natural conversation.",
+                        "Expand your ideas with examples and explanations for better coherence.",
+                        "Don't rush—speak at a steady pace and articulate your words.",
+                        "Paraphrase the question before answering to demonstrate vocabulary range.",
+                        "Use linking words like 'however', 'moreover', and 'for example' for fluency.",
+                        "If you make a mistake, correct yourself naturally and keep going.",
+                        "Support your opinions with logical reasons and relevant examples.",
+                        "Listen carefully to the examiner and respond directly to the question.",
+                        "Practice thinking in English to improve response time and fluency.",
+                        "Use both simple and complex sentences for a balanced response.",
+                        "Vary your intonation to sound more natural and engaging.",
+                        "Stay calm, confident, and treat it like a normal conversation.",
+                        "Avoid long pauses; use natural fillers like 'Well' or 'Let me think'.",
+                        "Mistakes are normal—focus on clear communication instead of perfection.",
+                        "Show enthusiasm and engage with the examiner through eye contact.",
+                        "Practice answering under timed conditions to manage your speaking length.",
+                        "Never give one-word answers—always extend with explanations.",
+                        "Describe past experiences using the correct tenses fluently.",
+                        "Use synonyms to avoid repetition and showcase a wide vocabulary.",
+                        "Record yourself speaking and analyze areas for improvement.",
+                        "Practice with different partners to experience varied speaking styles.",
+                        "Stay positive, believe in yourself, and trust your preparation.",
+                        "Don’t memorize long responses; focus on spontaneous speech.",
+                        "Avoid robotic speech—speak naturally with emotion and expression.",
+                        "Organize your answers logically: introduce, explain, and conclude.",
+                        "Use idiomatic expressions but don’t overuse them unnaturally.",
+                        "Practice discussing abstract ideas to improve Part 3 performance.",
+                        "Familiarize yourself with common IELTS Speaking topics.",
+                        "Speak at a normal pace; don’t speak too fast or too slow.",
+                        "Use personal experiences to make answers more relatable and engaging.",
+                        "Develop strong opening and closing statements for structured answers.",
+                        "Pause naturally at punctuation points to sound more coherent.",
+                        "Read and listen to English daily to expand your vocabulary.",
+                        "Think aloud in English to improve real-time speaking skills.",
+                        "Use hand gestures to feel more natural and expressive.",
+                        "Practice describing images or situations to improve fluency.",
+                        "Ask yourself ‘why’ and ‘how’ to expand short answers.",
+                        "If you don’t understand a question, ask the examiner to repeat.",
+                        "Use rhetorical questions to make your speech more engaging.",
+                        "Practice giving both sides of an argument before stating your opinion.",
+                        "Speak about unfamiliar topics to challenge and improve your thinking.",
+                        "Keep sentences concise and avoid overcomplicating your speech.",
+                        "Smile and stay relaxed—confidence improves your performance.",
+                        "Develop a habit of using descriptive language in daily conversations.",
+                        "Watch IELTS Speaking test videos to observe high-scoring candidates.",
+                        "Self-correct minor mistakes but don’t let them break your flow.",
+                        "Think of the IELTS Speaking test as a friendly chat, not an interview!",
+                        "Speak in full sentences to develop clear and complete responses.",
+                        "Always give reasons and examples to support your opinions.",
+                        "Avoid using slang—stick to formal yet natural English.",
+                        "Don’t panic if you make a mistake; stay calm and continue.",
+                        "Use contractions like ‘I’m’ instead of ‘I am’ to sound natural.",
+                        "Think before speaking; organize your thoughts for coherence.",
+                        "Don’t repeat the question word-for-word; rephrase it in your response.",
+                        "Practice storytelling techniques to make answers engaging.",
+                        "Use advanced vocabulary but ensure words fit the context.",
+                        "Engage the examiner with a friendly, conversational tone.",
+                        "Speak confidently, even if you’re unsure about your answer.",
+                        "Avoid one-word answers; always explain your ideas.",
+                        "Give personal opinions instead of generic responses.",
+                        "Practice answering in different ways to improve flexibility.",
+                        "Use rhetorical questions to make your speech more engaging.",
+                        "Practice pronouncing difficult words to improve clarity.",
+                        "Focus on fluency rather than perfect grammar.",
+                        "Be expressive—use facial expressions and voice modulation.",
+                        "Avoid overly long pauses; think aloud if necessary.",
+                        "Structure answers using the P.E.E method (Point, Example, Explanation).",
+                        "Use signposting phrases like ‘In my opinion’ and ‘I believe that’.",
+                        "Watch English interviews to observe natural speaking patterns.",
+                        "Practice with a timer to ensure answers aren’t too short or long.",
+                        "Avoid fillers like ‘uh’ and ‘um’; use meaningful pauses instead.",
+                        "Don’t memorize scripted answers; focus on spontaneous speech.",
+                        "Use real-life examples to make answers relatable.",
+                        "Paraphrase and expand on questions for stronger responses.",
+                        "Stay confident and smile—it helps reduce nervousness.",
+                        "Don’t use overly complex words if you’re unsure of their meaning.",
+                        "Answer ‘why’ and ‘how’ to add depth to your response.",
+                        "Practice thinking out loud to develop quick responses.",
+                        "Learn to use hesitation phrases like ‘That’s an interesting question’.",
+                        "Use your personal experiences to make your speech unique.",
+                        "Familiarize yourself with different accents for better listening.",
+                        "Practice with a native speaker to improve naturalness.",
+                        "Stay relaxed—treat the test like a friendly discussion.",
+                        "Use stress and intonation to emphasize important points.",
+                        "Prepare for unfamiliar topics by practicing diverse subjects.",
+                        "Speak at a steady pace—don’t rush or speak too slowly.",
+                        "Think of three points before answering to stay organized.",
+                        "Watch TED Talks to learn engaging speaking techniques.",
+                        "Summarize your main points at the end of your answer.",
+                        "Practice rewording your answers to build flexibility.",
+                        "Use the past, present, and future tenses correctly.",
+                        "Describe emotions and details to make answers engaging.",
+                        "Use pauses effectively instead of saying ‘uhm’ or ‘err’.",
+                        "Be concise—avoid rambling or going off-topic.",
+                        "If you don’t understand, ask the examiner to clarify.",
+                        "Avoid excessive hand gestures but use natural body language.",
+                        "The more you practice, the more confident you’ll become!"
+                    ];
+
+                    function pickRandomMessage() {
+                        const randomIndex = Math.floor(Math.random() * messages.length);
+                        return messages[randomIndex];
+                    }
+                    function changeRecommendation() {
+                        document.getElementById('aboutMeSpan').textContent = pickRandomMessage();
+                    }
+                    document.getElementById('aboutMeSpan').textContent = pickRandomMessage();
+                </script>
+            </div>
+            <div class="bottom-bottom">
+                <div class="social-links-container">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" onclick="window.location.href='/MainInterface'">
+                        <path d="M3 12l1.5-1.5L12 3l7.5 7.5L21 12v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8z"></path>
+                        <path d="M9 21V9h6v12"></path>
+                    </svg>
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" onclick="changeRecommendation()">
+                        <path d="M9 21h6v-2H9v2zm3-19a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3.5 5.5V17h7v-2.5c2-1 3.5-3 3.5-5.5a7 7 0 0 0-7-7z"></path>
+                    </svg>
+                </div>
+                <button class="button" onclick="window.location.href='/converter'">Convert audio</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

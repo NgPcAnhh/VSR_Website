@@ -1,0 +1,521 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+:root {
+    --background-color: #f5e6d3;
+    --card-bg: #fff;
+    --accent-color: #F0C040;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --border-color: #e6d5c1;
+    --hover-color: #f0dbc8;
+}
+
+body {
+    background-color: var(--background-color);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode {
+    --background-color: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --border-color: #F0C04022;
+}
+
+.navbar {
+    background-color: var(--card-bg);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-icons {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-icon {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.nav-icon:hover {
+    background-color: var(--border-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.welcome-section {
+    margin-bottom: 2rem;
+}
+
+.welcome-section h1 {
+    color: var(--text-primary);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-section p {
+    color: var(--text-secondary);
+}
+
+.main-content {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.practice-column {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.practice-card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    height: calc(50% - 1rem); /* Trừ đi một nửa gap */
+}
+
+.practice-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    background-color: var(--accent-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.card-start {
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.card-title {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-description {
+    color: var(--text-secondary);
+}
+
+.history-section {
+    flex: 1;
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    height: 100%;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.history-table th,
+.history-table td {
+    padding: 1rem;
+    text-align: left;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.history-table th {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 2px solid var(--border-color);
+}
+
+.profile-dropdown.active {
+    display: block;
+}
+
+.logout-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 2rem; /* Adjust padding as needed */
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block; /* Display the button inline */
+    text-align: center; /* Center the text inside the button */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    margin-left: 1rem; /* Add some space between the user ID and the button */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.history-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.history-modal-content {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 1000px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    border: 2px solid var(--border-color);
+}
+
+.history-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.history-modal-title {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.close-modal {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    padding: 5px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-modal:hover {
+    background-color: var(--border-color);
+}
+
+.history-modal-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.history-modal-table th,
+.history-modal-table td {
+    padding: 1rem;
+    text-align: left;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.history-modal-table th {
+    font-weight: 600;
+    color: var(--accent-color);
+    background-color: var(--border-color);
+}
+
+.history-modal-table tr:hover {
+    background-color: var(--hover-color);
+}
+
+/* Card flip styles */
+.practice-card.speaking {
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.practice-card.speaking.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* Safari */
+}
+
+.card-front {
+    background-color: var(--card-bg);
+}
+
+.card-back {
+    background-color: var(--card-bg);
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.practice-option {
+    flex: 1;
+    background-color: var(--hover-color);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.practice-option:hover {
+    box-shadow: 0 4px 12px rgba(240, 192, 64, 0.2);
+    transform: translateY(-2px);
+}
+
+.practice-option-icon {
+    font-size: 24px;
+    margin-bottom: 0.5rem;
+}
+
+.practice-option-title {
+    font-weight: bold;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.practice-option-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Thêm styles cho nút confirm */
+.confirm-test {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.confirm-message {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.confirm-btn {
+    padding: 0.8rem 2.5rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    background-color: var(--accent-color);
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.confirm-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background-color: #e6a100;
+}
+
+
+
+
+
+/* Ensure the container has the same width and margin */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Adjust the bottom-section to match the main-content layout */
+.bottom-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    gap: 2rem; /* Add gap between the cards */
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Ensure the bottom-card has similar properties to the practice-card */
+.bottom-card {
+    flex: 1;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    max-width: calc(50% - 1rem); /* Adjust width to fit within the container */
+}
+
+
+
+.bottom-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+
+.bottom-card h2 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+
+
+.bottom-card p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+
+
+.bottom-card a {
+    display: inline-block;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+
+.bottom-card a:hover {
+    background: #e6a100;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+
+body.dark-mode {
+    --background-color: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --border-color: #F0C040;
+}
+
+body.dark-mode .bottom-card {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+body.dark-mode .bottom-card h2,
+body.dark-mode .bottom-card p {
+    color: var(--text-primary);
+}
+
+body.dark-mode .bottom-card a {
+    background: var(--card-bg);
+    color: var(--border-color);
+    border: 2px solid var(--border-color);
+}
+
+body.dark-mode .bottom-card a:hover {
+    background: var(--border-color);
+    color: var(--card-bg);
+}
