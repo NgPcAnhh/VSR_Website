@@ -69,7 +69,7 @@ body {
 }
 
 #practise-right-panel {
-    flex: 0 0 35%; /* Giảm xuống 30% để cân bằng với panel trái */
+    flex: 0 0 50%; /* Giảm xuống 30% để cân bằng với panel trái */
     height: 100%;
     display: flex;
     flex-direction: column;

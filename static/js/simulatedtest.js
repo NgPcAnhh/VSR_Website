@@ -17,7 +17,7 @@ let selectedVoice;
 
 // Time constants
 const PART1_DURATION = 300;  // 5 minutes
-const PART2_PREP_DURATION = 86;  // 1 minute + question reading time
+const PART2_PREP_DURATION = 80;  // 1 minute + question reading time
 const PART2_SPEAK_DURATION = 120;  // 2 minutes
 const PART3_DURATION = 300;  // 5 minutes
 
@@ -296,7 +296,12 @@ async function part2() {
     if (isRunning) {
         await speak("All right? Remember you have one to two minutes for this, i will tell you when the time is up");
         await speak("Start speaking now.");
-        await countdown(PART2_SPEAK_DURATION);
+
+        // Wait for either next button click or timeout
+        const timeoutPromise = countdown(PART2_SPEAK_DURATION);
+        const nextButtonPromise = waitForNextQuestion();
+
+        await Promise.race([timeoutPromise, nextButtonPromise]);
 
         // Remove the panel after Part 2 is complete
         removeQuestionPanel();
@@ -343,7 +348,8 @@ async function sendCompletionTime() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ completion_time: timestamp, test_type: 'simulated test' })        });
+            body: JSON.stringify({ completion_time: timestamp, test_type: 'simulated test' })
+        });
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         console.log('Completion time saved successfully');
     } catch (error) {

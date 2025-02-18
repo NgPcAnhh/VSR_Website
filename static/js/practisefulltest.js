@@ -10,7 +10,7 @@ let selectedVoice;
 
 // Time constants
 const PART1_DURATION = 300;  // 5 minutes
-const PART2_PREP_DURATION = 86;  // 1 minute + question reading time
+const PART2_PREP_DURATION = 80;  // 1 minute + question reading time
 const PART2_SPEAK_DURATION = 120;  // 2 minutes
 const PART3_DURATION = 300;  // 5 minutes
 
@@ -70,6 +70,27 @@ function speak(text) {
     });
 }
 
+// Data Fetching - Di chuyển fetchQuestions lên trước để đảm bảo nó được gọi đầu tiên
+async function fetchQuestions() {
+    try {
+        const timestamp = new Date().getTime();
+        const response = await fetch(`/generate_questions?t=${timestamp}`);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        questions = await response.json();
+        console.log('Fetched questions:', questions);
+        return questions; // Trả về questions để có thể sử dụng Promise.then()
+    } catch (error) {
+        console.error('Error fetching questions:', error);
+        // Tạo câu hỏi mặc định nếu fetch thất bại
+        questions = {
+            0: "Can you tell me about yourself?",
+            1: "What do you do in your free time?",
+            // ...thêm các câu hỏi mặc định khác nếu cần
+        };
+        return questions;
+    }
+}
+
 // Test Parts
 async function part1() {
      await speak("This is the simulated speaking test and I'm your examiner. Okay, Please make sure your microphone is on and your erea is silent.");
@@ -99,12 +120,12 @@ async function part1() {
     }
 }
 
+
 async function part2() {
     if (!isRunning) return;
 
     await speak("In part 2, I'm going to give you a topic and I'd like you to talk about it for one to two minutes.");
     await speak("Before you talk, you'll have one minute to think about what you are going to say. You can make notes if you wish.");
-
 
     await speak(questions[currentQuestionIndex].split("You should say")[0]);
 
@@ -113,7 +134,13 @@ async function part2() {
     if (isRunning) {
         await speak("All right? Remember you have one to two minutes for this, i will tell you when the time is up");
         await speak("Start speaking now.");
-        await countdown(PART2_SPEAK_DURATION);
+
+        // Wait for either next button click or timeout
+        const timeoutPromise = countdown(PART2_SPEAK_DURATION);
+        const nextButtonPromise = waitForNextQuestion();
+
+        await Promise.race([timeoutPromise, nextButtonPromise]);
+
 
         currentQuestionIndex = 11;
     }
@@ -155,7 +182,8 @@ async function sendCompletionTime() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ completion_time: timestamp, test_type: 'full test practise' })        });
+            body: JSON.stringify({ completion_time: timestamp, test_type: 'full test practise' })
+        });
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         console.log('Completion time saved successfully');
     } catch (error) {
@@ -223,12 +251,12 @@ function displayQuestion() {
     });
 }
 
-// Test Control
+// Test Control - Cập nhật để đợi fetchQuestions hoàn thành
 async function startTest() {
     isRunning = true;
     try {
-        await fetchQuestions();
-        displayQuestion(); // Call displayQuestion after fetching questions
+        await fetchQuestions(); // Đợi cho đến khi fetch xong
+        displayQuestion(); // Gọi displayQuestion sau khi fetch questions
         await part1();
         if (isRunning) await part2();
         if (isRunning) await part3();
@@ -236,19 +264,6 @@ async function startTest() {
         console.error('Test error:', error);
     } finally {
         isRunning = false;
-    }
-}
-
-// Data Fetching
-async function fetchQuestions() {
-    try {
-        const timestamp = new Date().getTime();
-        const response = await fetch(`/generate_questions?t=${timestamp}`);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        questions = await response.json();
-        console.log('Fetched questions:', questions);
-    } catch (error) {
-        console.error('Error fetching questions:', error);
     }
 }
 
@@ -275,5 +290,13 @@ function startTimer() {
 document.addEventListener('DOMContentLoaded', async function() {
     await initializeVoice();
     startTimer(); // Start the timer when the page loads
-    startTest();
+
+    // Đảm bảo tìm nạp câu hỏi trước khi bắt đầu bài kiểm tra
+    startTest(); // Đã cập nhật để đợi fetchQuestions hoàn thành
 });
+
+// Thêm hàm xử lý lỗi nếu cần
+function showErrorModal(message) {
+    console.error(message);
+    alert(message); // Có thể thay thế bằng modal hoặc thông báo phù hợp với UI
+}

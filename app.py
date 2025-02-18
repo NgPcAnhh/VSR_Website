@@ -10,10 +10,10 @@ import pandas as pd
 app = Flask(__name__)
 app.secret_key = os.urandom(24)  # Set the secret key to a random 24-byte string
 
-
 #________________________________________________________________________________
 @app.route('/')
 def index():
+    session.permanent = True
     return render_template('login.html')
 
 @app.route('/speech2text_INF')
@@ -40,7 +40,8 @@ def timer():
 
 @app.route('/simulatedtest')
 def simulatedtest():
-    return render_template('simulatedtest.html')
+    user_id = session.get('user_id', 'Unknown')  # Get user ID from session
+    return render_template('simulatedtest.html', user_id=user_id)
 
 @app.route('/endTest')
 def endTest():
@@ -180,11 +181,11 @@ def predicting():
 @app.route('/save_completion_time', methods = ['POST'])
 def save_completion_time():
     data = request.get_json()
-    user_id = session.get('user_id', 'Unknown')
+    user_id = session.get('user_id', '1')
     completion_time = data.get('completion_time')
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
     id_test = f"{user_id}{completion_time.replace('-', '').replace(':', '').replace(' ', '')}"
-    type = data.get('type')
+    type = data.get('test_type')
 
     query = "INSERT INTO history (id_test, id, time,type) VALUES (%s, %s, %s, %s)"
     params = (id_test, user_id, timestamp, type)
