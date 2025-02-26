@@ -86,6 +86,11 @@ Platform được cập nhật định kỳ với:
 
 ---
 
+Video demo cho chức năng simulated-test: https://youtu.be/7qw3OQI7L9g
+Video demo cho chức năng pratise-test: https://youtu.be/wyd3uTvYV-0
+
+---
+
 # IELTS Speaking Practice Platform mô tả kỹ thuật🎯
 
 ## 🛠 Công nghệ sử dụng
