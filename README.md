@@ -86,10 +86,20 @@ Platform được cập nhật định kỳ với:
 
 ---
 
-Video demo cho chức năng simulated-test: https://youtu.be/7qw3OQI7L9g
+Video demo cho chức năng simulation test: 
 
 
-Video demo cho chức năng pratise-test: https://youtu.be/wyd3uTvYV-0
+[![Tên video](static/picture/4.png)]([https://www.youtube.com/watch?v=ID_VIDEO](https://youtu.be/7qw3OQI7L9g))
+
+
+
+
+
+Video demo cho chức năng pratise-test: 
+
+
+[![Tên video](static/picture/6.png)]([https://www.youtube.com/watch?v=ID_VIDEO](https://youtu.be/wyd3uTvYV-0))
+
 
 ---
 
