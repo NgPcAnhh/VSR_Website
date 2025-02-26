@@ -89,7 +89,7 @@ Platform được cập nhật định kỳ với:
 Video demo cho chức năng simulation test: 
 
 
-[![Tên video](static/picture/4.png)]([https://www.youtube.com/watch?v=ID_VIDEO](https://youtu.be/7qw3OQI7L9g))
+[![Tên video](https://img.youtube.com/vi/7qw3OQI7L9g/maxresdefault.jpg)](https://youtu.be/7qw3OQI7L9g)
 
 
 
@@ -98,7 +98,7 @@ Video demo cho chức năng simulation test:
 Video demo cho chức năng pratise-test: 
 
 
-[![Tên video](static/picture/6.png)]([https://www.youtube.com/watch?v=ID_VIDEO](https://youtu.be/wyd3uTvYV-0))
+[![Tên video](https://img.youtube.com/vi/wyd3uTvYV-0/maxresdefault.jpg)](https://youtu.be/wyd3uTvYV-0)
 
 
 ---
