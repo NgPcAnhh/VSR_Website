@@ -22,7 +22,7 @@ Nền tảng luyện thi IELTS Speaking trực tuyến với trải nghiệm thi
   - Ngữ pháp cơ bản
   - Từ vựng không phù hợp
   - Độ trôi chảy trong câu trả lời
-- **Speaking band Prediction**: Dự đoán band điểm dựa trên:
+- **Speaking band Prediction**: Dự đoán band điểm dựa trên (random-forest):
   - Thông tin nhân khẩu học 
   - Điểm IELTS hiện tại
   - Tổng thời gian có thể học 
